@@ -22,7 +22,7 @@
           <% if logged_in? %>
             <li style="color: white;"><%= current_user[:name] %></li>
 	    <li>
-              <%= link_to "#" do %>
+              <%= link_to favorites_index_path do %>
                 <%= image_tag "icons/heart.png" %>
               <% end %>
             </li>
