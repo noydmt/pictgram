@@ -14,4 +14,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resources :topics
+  
+  get 'favorites/index'
+  post '/favorites', to: 'favorites#create'
+  delete '/favorites', to: 'favorites#destroy'
+  
+  get 'comments/index', to: 'comments#index'
+  post 'comments', to: 'comments#create'
+  delete '/comments', to:  'comments#destroy'
 end
