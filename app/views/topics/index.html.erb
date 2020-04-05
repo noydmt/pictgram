@@ -14,14 +14,30 @@
               <% end %>
             <% else %>
               <%= link_to favorites_path(topic_id: topic.id) , method: :delete do %>
-                <%= image_tag 'icons/heart-black.png', class: 'red' %>
+                <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon red' %>
               <% end %>
             <% end %>
             <%= topic.favorite_users.count %>件
             <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <%= topic.comment_users.count %>件
             <p class="topic-text">
               <%= topic.description %>
             </p>
+            <% @comments.each do |comment| %>
+              <% if comment.topic_id == topic.id %>
+                <%= comment.content %><br>
+                <%= comment.user.name %><br>
+              <% end %>
+            <% end %>
+            <%= form_for @comment, url: comments_path do |f| %>
+                <%= f.hidden_field :topic_id, :value => topic.id %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+              <div class="form-group">
+	        <%= f.label :content, class: "text-white" %>
+	        <%= f.text_field :content, class: "form-control" %>
+              </div>
+              <%= f.submit "投稿" %>
+            <% end %>
           </div>
         </div>
       </div>
