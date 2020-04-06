@@ -3,7 +3,6 @@ class TopicsController < ApplicationController
     @topics = Topic.all.includes(:favorite_users)
     @comments = Comment.all.includes(:user)
     @comment = Comment.new
-    byebug
   end
 
   def new
